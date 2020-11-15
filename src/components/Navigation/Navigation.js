@@ -8,10 +8,10 @@ function Navigation() {
     return (
         <Nav>
             <Ul>
-                <li><Link exact to={"/"}><NavMenuIcon src={"../../../Icons/home.svg"}/>Home</Link></li>
-                <li><Link exact to={"/catalog"}><NavMenuIcon src={""}/>Catalog</Link></li>
-                <li><Link exact to={"/cart"}><NavMenuIcon/>Cart</Link></li>
-                <li><Link exact to={"/signin"}><NavMenuIcon/>Sign in</Link></li>
+                <li><Link exact={"true"} to={"/"}><NavMenuIcon src={"../../Icons/home.svg"}/>Home</Link></li>
+                <li><Link exact={"true"} to={"/catalog"}><NavMenuIcon src={"../../Icons/items-icon.svg"}/>Catalog</Link></li>
+                <li><Link exact={"true"} to={"/cart"}><NavMenuIcon src={"../../Icons/shopping-cart.svg"}/>Cart</Link></li>
+                <li><Link exact={"true"} to={"/signin"}><NavMenuIcon src={"../../Icons/logo.svg"}/>Sign in</Link></li>
             </Ul>
 
         </Nav>

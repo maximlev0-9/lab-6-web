@@ -14,7 +14,7 @@ function BigItem(props) {
                     <Link to={"/catalog/item/1"}>Buy It!</Link>
                 </ButtonToBuyCar>
             </DivForDescription>
-            <BigItemImage src={"../../Icons/img-for-BigItem.jpg"}/>
+            <BigItemImage src={"../../Icons/ferrari-sf90.jpg"}/>
         </DivWithBorders>
     );
 }

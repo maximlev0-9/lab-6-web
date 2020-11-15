@@ -8,7 +8,6 @@ background-color: white;
   align-items: center;
   align-content: center;
   align-self: center;
-  //padding: 0 4rem;
   `
 
 export const OneMoreContainer = styled.div`

@@ -5,6 +5,7 @@ import {ContainerForCardItems, OneMoreContainer} from "./Home.styles";
 
 // future example of card item object={
 // id:int
+// imageSrc:string
 // title:string,
 // sizeOfDisks:double,
 // powerOfEngine: int,
@@ -19,54 +20,87 @@ function Home(props) {
         {
             id: 1,
             title: "Ferrari",
+            imageSrc:"ferrari-sf90",
             price: 10000000,
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
-            model: "SR90 ojcmnfv"
+            model: "SF90 Stradale"
         },
         {
             id: 2,
             title: "Ferrari",
+            imageSrc:"ferrari-812",
             price: 254000,
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
-            model: ""
+            model: "812"
         },
         {
             id: 3,
-            title: "Ferrari",
+            imageSrc:"tesla-cybertruck",
+            title: "Tesla",
             price: 254000,
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
-            model: ""
+            model: "Cybertruck"
         },
         {
             id: 4,
-            title: "Ferrari",
+            imageSrc:"tesla-x",
+            title: "Tesla",
             price: 254000,
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
-            model: ""
+            model: "X"
+        },{
+            id: 6,
+            imageSrc:"tesla-s",
+            title: "Tesla",
+            price: 254000,
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
+            model: "S"
+        },
+        {
+            id: 8,
+            imageSrc:"porshe-cayenne",
+            title: "Porshe",
+            price: 254000,
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
+            model: "Cayenne"
         },
         {
             id: 5,
+            imageSrc:"ferrari-f8",
             title: "Ferrari",
             price: 254000,
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
-            model: ""
+            model: "F8"
         },
+        {
+            id: 7,
+            imageSrc:"tesla-y",
+            title: "Tesla",
+            price: 254000,
+            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid eligendi nobis quod?\n",
+            model: "Y"
+        },
+
+
     ]
     return (
-        <div>
+        <>
             <BigItem/>
             <ContainerForCardItems>
                 <OneMoreContainer>
-                    {data.slice(0,6).map((value) =>
+                    {data.slice(0, 6).map((value) =>
                         <CardItem title={value.title}
                                   description={value.description}
                                   model={value.model}
-                                  price={value.price}/>
+                                  price={value.price}
+                                  imageSrc={value.imageSrc}
+                                  key={value.id}
+                        />
                     )}
                 </OneMoreContainer>
 
             </ContainerForCardItems>
-        </div>
+        </>
     );
 }
 

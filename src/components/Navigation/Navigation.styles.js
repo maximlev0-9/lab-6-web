@@ -20,9 +20,8 @@ export const NavMenuIcon = styled.div`
   margin-left: 1rem;
   margin-right: 0.3rem;
   
-  // background-image: url("${({src = "../../../"}) => src}");
-  background-image: url("Icons/home.svg");
-  background-color: black;
+   background-image: url("${({src = "../../../"}) => src}");
+   background-size: cover;
   width: 1rem;
   height: 1rem;
 `
