@@ -12,5 +12,5 @@ background-color: white;
 
 export const OneMoreContainer = styled.div`
   margin: auto;
-  width: 80%;
+  width: 90%;
 `

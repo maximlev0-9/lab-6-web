@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const CardItemDiv = styled.div`
   display: inline-block;
-  width: 30%;
+  width: 31%;
   min-width: 15rem;
-  padding: 0.5rem;
-  margin: 0.5rem;
+  padding: 0.4%;
+  margin: 0.4%;
   border: #555555 0.1rem solid;
   border-radius: 1rem;
 `

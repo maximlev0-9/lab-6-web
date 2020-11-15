@@ -12,6 +12,5 @@ background-color: white;
 export const Logo = styled.div`
   width: 3rem;
   height: 3rem;
-  background-image: url("../../Icons/logo.svg");
-  //background-color: black;
+  background-image: url("../../Icons/svg/logo.svg");
 `

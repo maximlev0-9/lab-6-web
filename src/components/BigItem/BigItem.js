@@ -1,6 +1,7 @@
 import React from 'react';
-import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders, Price} from "./BigItem.styles";
+import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders} from "./BigItem.styles";
 import {Link} from "react-router-dom";
+import {Price} from "../../App.styles";
 
 function BigItem(props) {
     return (

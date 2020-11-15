@@ -1,5 +1,6 @@
 import React from 'react';
 import {CardItemDiv, CardItemIcon, CardItemButtonMoreInfo} from "./CardItem.slyles";
+import {Price} from "../../App.styles";
 
 function CardItem({imageSrc="tesla-x",title = "Ferrari", price = 100000, description = "lol", model = "XLS"}) {
     return (
@@ -8,7 +9,7 @@ function CardItem({imageSrc="tesla-x",title = "Ferrari", price = 100000, descrip
                 src={`../../Icons/${imageSrc}.jpg`} alt={""}
             />
             <h2>{title} {model}</h2>
-            <p>${price}</p>
+            <Price>${price}</Price>
             <p>{description}</p>
             <CardItemButtonMoreInfo>More info</CardItemButtonMoreInfo>
 
