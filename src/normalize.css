@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+}
+ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a,p,h1,h2,h3,h4,h5,h6,li {
+    display: flex;
+    font-family: "Roboto Light", Roboto, sans-serif;
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
