@@ -2,19 +2,22 @@ import React from 'react';
 import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders} from "./BigItem.styles";
 import {Link} from "react-router-dom";
 import {Price} from "../../App.styles";
+import {DataContext} from "../../App";
 
 function BigItem(props) {
+    const item = React.useContext(DataContext)[0]
     return (
         <DivWithBorders>
             <DivForDescription>
-                <h1>Ferrari SF90 Stradale</h1>
+                <h1>{item.title} {item.model}</h1>
                 <br/>
-                <h2>Super-cool modern fast and powerful sexy new Ferrari with which all girls would be yours</h2>
-                <Price>Just for 100000000$</Price>
+                <h2>{item.description}</h2>
+                <Price>Just for {item.price}</Price>
                 <ButtonToBuyCar>
-                    <Link to={"/catalog/item/1"}>Buy It!</Link>
+                    <Link to={`/catalog/item/${item.id}`}>Buy It!</Link>
                 </ButtonToBuyCar>
             </DivForDescription>
+
             <BigItemImage src={"../../Icons/ferrari-sf90.jpg"}/>
         </DivWithBorders>
     );

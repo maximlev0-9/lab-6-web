@@ -9,8 +9,7 @@ function CardItem({imageSrc="tesla-x",title = "Ferrari", price = 100000, descrip
                 src={`../../Icons/${imageSrc}.jpg`} alt={""}
             />
             <h2>{title} {model}</h2>
-            <Price>${price}</Price>
-            <p>{description}</p>
+            <p>Description: {description}</p>
             <CardItemButtonMoreInfo>More info</CardItemButtonMoreInfo>
 
         </CardItemDiv>
