@@ -1,20 +1,20 @@
 import React from 'react';
-import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders} from "./BigItem.styles";
+import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders} from "./BigItem.styles.js";
 import {Link} from "react-router-dom";
 import {Price} from "../../App.styles";
-import {DataContext} from "../../App";
+import DataContext from '../../context/data/DataContext';
 
 function BigItem(props) {
-    const item = React.useContext(DataContext)[0]
+    const {title, model, description, price, id} = React.useContext(DataContext)[0]
     return (
         <DivWithBorders>
             <DivForDescription>
-                <h1>{item.title} {item.model}</h1>
+                <h1>{title} {model}</h1>
                 <br/>
-                <h2>{item.description}</h2>
-                <Price>Just for {item.price}</Price>
+                <h2>{description}</h2>
+                <Price>Just for {price}</Price>
                 <ButtonToBuyCar>
-                    <Link to={`/catalog/item/${item.id}`}>Buy It!</Link>
+                    <Link to={`/catalog/item/${id}`}>Buy It!</Link>
                 </ButtonToBuyCar>
             </DivForDescription>
 

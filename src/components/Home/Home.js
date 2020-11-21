@@ -2,18 +2,18 @@ import React, {useContext} from 'react';
 import BigItem from "../BigItem/BigItem";
 import CardItem from "../CardItem/CardItem";
 import {ContainerForCardItems, OneMoreContainer} from "./Home.styles";
-import {DataContext} from "../../App";
+import DataContext from '../../context/data/DataContext';
 
 // future example of card item object={
 // id:int
 // imageSrc:string
 // title:string,
-// sizeOfDisks:double,
+// maxVelocity:int
 // powerOfEngine: int,
 // lengthInMeters:double,
 // weightInKg:double,
-// споживанняГалонЗаКм:int,
-// BakVolumeInGallons:int
+// fuelConsumptionPerKm:int,
+// TankVolumeInGallons:int
 // }
 
 
@@ -28,14 +28,8 @@ function Home(props) {
             <BigItem/>
             <ContainerForCardItems>
                 <OneMoreContainer>
-                    {data.slice(0, 6).map((value) =>
-                        <CardItem title={value.title}
-                                  description={value.description}
-                                  model={value.model}
-                                  price={value.price}
-                                  imageSrc={value.imageSrc}
-                                  key={value.id}
-                        />
+                    {data.slice(0, 6).map((item) =>
+                        <CardItem car={item} key={item.id}/>
                     )}
                 </OneMoreContainer>
 

@@ -8,18 +8,18 @@ import {
     SortWrapper
 } from "./Catalog.styles";
 import CardItem from "../CardItem/CardItem";
-import {DataContext} from "../../App";
+import DataContext from '../../context/data/DataContext';
+
 
 function Catalog(props) {
 
     const data = React.useContext(DataContext)
     const [viewedData, setViewedData] = useState(data);
     const [filterBy, setFilterBy] = useState("title");
-
     const [filter, setFilter] = useState("")
 
 
-    const updateData = (currSearch, filterByTwo=filterBy) => {
+    const updateData = (currSearch, filterByTwo = filterBy) => {
         if (currSearch.trim()) {
             setViewedData(data.filter(item => {
                     let compareBy;
@@ -31,7 +31,7 @@ function Catalog(props) {
                             compareBy = item.model;
                             break;
                         case "price":
-                            compareBy = item.price;
+                            compareBy = item.price.toString();
                             break;
                         default:
                             compareBy = item.title
@@ -46,17 +46,33 @@ function Catalog(props) {
     const handleChangeSearchInput = (event) => {
         let currSearch = event.target.value;
         setFilter(currSearch)
-
         updateData(currSearch);
-
     }
-
 
     const handleChangeSearchSelect = (event) => {
         let newFilterBy = event.target.value;
         setFilterBy(newFilterBy);
         updateData(filter, newFilterBy)
     }
+
+    // const handleChangeSortSelect = (event) => {
+    //     console.log(viewedData)
+    //     let sortBySth = event.target.value;
+    //     console.log(sortBySth)
+    //     setViewedData(viewedData.sort((a, b) => {
+    //         switch (sortBySth) {
+    //             case "title":
+    //                 return a.title > b.title;
+    //             case "model":
+    //                 return a.model > b.model;
+    //             case "price":
+    //                 return a.price - b.price;
+    //             default:
+    //                 return a.title > b.title;
+    //         }
+    //     }))
+    //     console.log(viewedData)
+    // };
 
     return (
         <div>
@@ -80,24 +96,19 @@ function Catalog(props) {
 
                 <SortWrapper>
                     Sort by:
-                    <SortSelect name={"sort_by"}>
+                    <SortSelect name={"sort_by"}
+                        // onChange={handleChangeSortSelect}
+                    >
                         <option value="title">Title</option>
                         <option value="model">Model</option>
                         <option value="price">Price</option>
                     </SortSelect>
                 </SortWrapper>
 
-
             </SortAndSearchWrapper>
-
-
             <CatalogWrapper>
-                {viewedData.map(item => <CardItem title={item.title}
-                                                  price={item.price}
-                                                  model={item.model}
-                                                  description={item.description}
-                                                  imageSrc={item.imageSrc}/>)}
-
+                {viewedData.map(item => <CardItem key={item.id}
+                                                  car={item}/>)}
             </CatalogWrapper>
         </div>
     );
