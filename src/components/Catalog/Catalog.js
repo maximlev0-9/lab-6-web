@@ -19,11 +19,11 @@ function Catalog(props) {
     const [filter, setFilter] = useState("")
 
 
-    const updateData = (currSearch, filterByTwo = filterBy) => {
+    const updateData = (currSearch=filter, filterBy2 = filterBy) => {
         if (currSearch.trim()) {
             setViewedData(data.filter(item => {
                     let compareBy;
-                    switch (filterByTwo) {
+                    switch (filterBy2) {
                         case "title":
                             compareBy = item.title;
                             break;
@@ -55,24 +55,39 @@ function Catalog(props) {
         updateData(filter, newFilterBy)
     }
 
-    // const handleChangeSortSelect = (event) => {
-    //     console.log(viewedData)
-    //     let sortBySth = event.target.value;
-    //     console.log(sortBySth)
-    //     setViewedData(viewedData.sort((a, b) => {
-    //         switch (sortBySth) {
-    //             case "title":
-    //                 return a.title > b.title;
-    //             case "model":
-    //                 return a.model > b.model;
-    //             case "price":
-    //                 return a.price - b.price;
-    //             default:
-    //                 return a.title > b.title;
-    //         }
-    //     }))
-    //     console.log(viewedData)
-    // };
+    const handleChangeSortSelect = (event) => {
+        console.log(viewedData)
+        let sortBySth = event.target.value;
+        console.log(sortBySth);
+        let tempData = viewedData
+        tempData.sort((a, b) => {
+            switch (sortBySth) {
+                case "title":
+                    return a.title > b.title;
+                case "model":
+                    return a.model > b.model;
+                case "price":
+                    return a.price - b.price;
+                default:
+                    return a.title > b.title;
+            }
+        })
+        setViewedData(
+            // viewedData.sort((a, b) => {
+            // switch (sortBySth) {
+            //     case "title":
+            //         return a.title > b.title;
+            //     case "model":
+            //         return a.model > b.model;
+            //     case "price":
+            //         return a.price - b.price;
+            //     default:
+            //         return a.title > b.title;
+            // }
+            // })
+            tempData)
+        console.log(viewedData)
+    };
 
     return (
         <div>
@@ -97,14 +112,13 @@ function Catalog(props) {
                 <SortWrapper>
                     Sort by:
                     <SortSelect name={"sort_by"}
-                        // onChange={handleChangeSortSelect}
+                                onChange={handleChangeSortSelect}
                     >
                         <option value="title">Title</option>
                         <option value="model">Model</option>
                         <option value="price">Price</option>
                     </SortSelect>
                 </SortWrapper>
-
             </SortAndSearchWrapper>
             <CatalogWrapper>
                 {viewedData.map(item => <CardItem key={item.id}

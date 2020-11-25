@@ -7,11 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Catalog from "./components/Catalog/Catalog";
 import Cart from "./components/Cart/Cart";
 import DataState from "./context/data/DataState";
-
-// fetch data
-
-export const DataContext = React.createContext()
-
+import ItemPage from "./components/ItemPage/ItemPage";
 
 function App() {
     return (
@@ -20,7 +16,8 @@ function App() {
                 <Header/>
                 <Switch>
                     <Route path="/home" component={Home}/>
-                    <Route path="/catalog" component={Catalog}/>
+                    <Route exact={true} path="/catalog" component={Catalog}/>
+                    <Route exact={true} path="/catalog/item/:id" component={ItemPage}/>
                     <Route path="/cart" component={Cart}/>
                     <Route path="/" component={Home}/>
                 </Switch>

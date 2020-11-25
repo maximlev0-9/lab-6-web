@@ -4,20 +4,6 @@ import CardItem from "../CardItem/CardItem";
 import {ContainerForCardItems, OneMoreContainer} from "./Home.styles";
 import DataContext from '../../context/data/DataContext';
 
-// future example of card item object={
-// id:int
-// imageSrc:string
-// title:string,
-// maxVelocity:int
-// powerOfEngine: int,
-// lengthInMeters:double,
-// weightInKg:double,
-// fuelConsumptionPerKm:int,
-// TankVolumeInGallons:int
-// }
-
-
-
 function Home(props) {
 
     const data = useContext(DataContext)
