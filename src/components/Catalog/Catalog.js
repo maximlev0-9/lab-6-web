@@ -69,7 +69,7 @@ function Catalog(props) {
                 case "price":
                     return a.price - b.price;
                 default:
-                    return a.title > b.title;
+                    return a.title > b.title ? 1 : -1;
             }
         })
         setViewedData(tempData)
