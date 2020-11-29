@@ -8,11 +8,9 @@ export const ItemDetailsWrapper = styled.div`
   background-clip: border-box;
   border-radius: 1rem;
   background: url("../../Icons/${(props) => props.src}.jpg") white no-repeat left 5% top 50%;
-  background-size: cover;
-  background-size: 40%;
+  background-size: 40% 90%;
   background-clip: padding-box;
 `
-
 
 export const ItemDetailsTitle = styled.p`
   margin: 0 auto;

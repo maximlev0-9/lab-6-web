@@ -15,28 +15,28 @@ function Catalog(props) {
 
     const data = React.useContext(DataContext)
     const [viewedData, setViewedData] = useState(data);
-    const [filterBy, setFilterBy] = useState("title");
-    const [filter, setFilter] = useState("")
+    const [filterSelectValue, setFilterSelectValue] = useState("title");
+    const [filterInputValue, setFilterInputValue] = useState("")
 
 
-    const updateData = (currSearch=filter, filterBy2 = filterBy) => {
-        if (currSearch.trim()) {
+    const updateData = (currFilterInput = filterInputValue, currFilterSelect = filterSelectValue) => {
+        if (currFilterInput.trim()) {
             setViewedData(data.filter(item => {
-                    let compareBy;
-                    switch (filterBy2) {
-                        case "title":
-                            compareBy = item.title;
-                            break;
-                        case "model":
-                            compareBy = item.model;
-                            break;
-                        case "price":
-                            compareBy = item.price.toString();
-                            break;
-                        default:
-                            compareBy = item.title
-                    }
-                    return compareBy.startsWith(currSearch);
+                let compareBy;
+                switch (currFilterSelect) {
+                    case "title":
+                        compareBy = item.title;
+                        break;
+                    case "model":
+                        compareBy = item.model;
+                        break;
+                    case "price":
+                        compareBy = item.price.toString();
+                        break;
+                    default:
+                        compareBy = item.title
+                }
+                return compareBy.startsWith(currFilterInput);
                 }
             ))
         } else {
@@ -45,47 +45,34 @@ function Catalog(props) {
     }
     const handleChangeSearchInput = (event) => {
         let currSearch = event.target.value;
-        setFilter(currSearch)
+        setFilterInputValue(currSearch)
         updateData(currSearch);
     }
 
     const handleChangeSearchSelect = (event) => {
         let newFilterBy = event.target.value;
-        setFilterBy(newFilterBy);
-        updateData(filter, newFilterBy)
+        setFilterSelectValue(newFilterBy);
+        updateData(filterInputValue, newFilterBy)
     }
 
     const handleChangeSortSelect = (event) => {
         console.log(viewedData)
         let sortBySth = event.target.value;
         console.log(sortBySth);
-        let tempData = viewedData
+        let tempData = [...viewedData]
         tempData.sort((a, b) => {
             switch (sortBySth) {
                 case "title":
-                    return a.title > b.title;
+                    return a.title > b.title ? 1 : -1;
                 case "model":
-                    return a.model > b.model;
+                    return a.model > b.model ? 1 : -1;
                 case "price":
                     return a.price - b.price;
                 default:
                     return a.title > b.title;
             }
         })
-        setViewedData(
-            // viewedData.sort((a, b) => {
-            // switch (sortBySth) {
-            //     case "title":
-            //         return a.title > b.title;
-            //     case "model":
-            //         return a.model > b.model;
-            //     case "price":
-            //         return a.price - b.price;
-            //     default:
-            //         return a.title > b.title;
-            // }
-            // })
-            tempData)
+        setViewedData(tempData)
         console.log(viewedData)
     };
 
@@ -95,12 +82,12 @@ function Catalog(props) {
                 <SearchWrapper>
                     <DivForTwoElements>
                         Search
-                        <FilterInput value={filter} name={"filter"} title={"filter"} placeholder={"Kek"}
+                        <FilterInput value={filterInputValue} name={"filterInputValue"} title={"filterInputValue"} placeholder={"Kek"}
                                      onChange={handleChangeSearchInput}/>
                     </DivForTwoElements>
                     <DivForTwoElements>
                         Search by:
-                        <SearchSelect value={filterBy} placeholder={"model"} name={"search_by"} id={"search_by"}
+                        <SearchSelect value={filterSelectValue} placeholder={"model"} name={"search_by"} id={"search_by"}
                                       onChange={handleChangeSearchSelect}>
                             <option value="title">Title</option>
                             <option value="model">Model</option>
