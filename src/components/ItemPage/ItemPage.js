@@ -5,7 +5,7 @@ import {AddToCartButton, CarOptionsText, ItemDetailsTitle, ItemDetailsWrapper} f
 
 function ItemPage() {
     const {id} = useParams()
-    const data = useContext(DataContext);
+    const {data} = useContext(DataContext);
     const item = data.filter(item => {
         // eslint-disable-next-line eqeqeq
         return item.id == id;

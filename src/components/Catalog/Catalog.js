@@ -11,9 +11,9 @@ import CardItem from "../CardItem/CardItem";
 import DataContext from '../../context/data/DataContext';
 
 
-function Catalog(props) {
+function Catalog() {
 
-    const data = React.useContext(DataContext)
+    const {data} = React.useContext(DataContext)
     const [viewedData, setViewedData] = useState(data);
     const [filterSelectValue, setFilterSelectValue] = useState("title");
     const [filterInputValue, setFilterInputValue] = useState("")
@@ -73,7 +73,6 @@ function Catalog(props) {
             }
         })
         setViewedData(tempData)
-        console.log(viewedData)
     };
 
     return (

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import DataContext from "./DataContext";
+import axios from 'axios'
 
-let data = [
+let hardcodedData = [
     {
         id: 1,
         title: "Ferrari",
@@ -13,7 +14,7 @@ let data = [
         powerOfEngine: 800,
         lengthInMeters: 4.5,
         weightInKg: 2000,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
     {
         id: 2,
@@ -26,7 +27,7 @@ let data = [
         powerOfEngine: 750,
         lengthInMeters: 4.3,
         weightInKg: 2000,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
     {
         id: 3,
@@ -39,7 +40,7 @@ let data = [
         powerOfEngine: 398,
         lengthInMeters: 4.5,
         weightInKg: 2000,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
     {
         id: 4,
@@ -52,7 +53,7 @@ let data = [
         powerOfEngine: 786,
         lengthInMeters: 4.2,
         weightInKg: 2300,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     }, {
         id: 6,
         imageSrc: "tesla-s",
@@ -64,7 +65,7 @@ let data = [
         powerOfEngine: 777,
         lengthInMeters: 5.5,
         weightInKg: 2000,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
     {
         id: 8,
@@ -77,7 +78,7 @@ let data = [
         powerOfEngine: 1000,
         lengthInMeters: 4.0,
         weightInKg: 2300,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
     {
         id: 5,
@@ -90,7 +91,7 @@ let data = [
         powerOfEngine: 999,
         lengthInMeters: 5.1,
         weightInKg: 2500,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
     {
         id: 7,
@@ -103,13 +104,31 @@ let data = [
         powerOfEngine: 488,
         lengthInMeters: 4.8,
         weightInKg: 1600,
-        TankVolumeInGallons: 80,
+        tankVolumeInGallons: 80,
     },
 ]
 
 function DataState({children}) {
+    const [data, setData] = useState( []);
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            setIsLoading(true)
+            const res = await axios.get(`http://localhost:8000/api/cars`);
+
+            const cars = res.data;
+            setData(cars);
+            setIsLoading(false)
+        };
+
+        fetchData();
+    }, [])
+
+
     return (
-        <DataContext.Provider value={data}>
+        <DataContext.Provider value={{data, setData, isLoading, setIsLoading}}>
             {children}
         </DataContext.Provider>
     );
