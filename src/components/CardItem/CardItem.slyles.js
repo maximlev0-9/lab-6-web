@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 export const CardItemDiv = styled.div`
   display: inline-block;
@@ -21,8 +22,9 @@ export const CardItemIcon = styled.div`
   margin-bottom: 0.2rem;
 `
 
-export const CardItemButtonMoreInfo = styled.button`
-  margin: 0.4rem 0 0;
+export const CardItemButtonMoreInfo = styled(Link)`
+  width: fit-content;
+  margin: 0.4rem 1rem 0.2rem auto;
   align-self: center;
   align-items: center;
   padding: 0.3rem 1rem;

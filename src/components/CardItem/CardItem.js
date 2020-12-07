@@ -11,9 +11,11 @@ function CardItem({car}) {
             />
             <h2>{title} {model}</h2>
             <p>Description: {description}</p>
-            <Link exact={"true"} to={`catalog/item/${id}`}>
-                <CardItemButtonMoreInfo>More info</CardItemButtonMoreInfo>
-            </Link>
+            <CardItemButtonMoreInfo exact={"true"} to={`catalog/item/${id}`}>
+                {/*<Link >*/}
+                    More info
+                {/*</Link>*/}
+            </CardItemButtonMoreInfo>
 
         </CardItemDiv>
     );

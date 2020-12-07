@@ -23,7 +23,7 @@ function BigItem() {
                     <h1>{car.title} {car.model}</h1>
                     <br/>
                     <h2>{car.description}</h2>
-                    <Price>Just for {car.price}</Price>
+                    <Price>Just for ${car.price}</Price>
                     <ButtonToBuyCar>
                         <Link to={`/catalog/item/${car.id}`}>Buy It!</Link>
                     </ButtonToBuyCar>
