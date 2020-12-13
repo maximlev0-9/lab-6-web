@@ -1,16 +1,22 @@
-import React, {useContext, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BigItem from "../BigItem/BigItem";
 import CardItem from "../CardItem/CardItem";
 import {ContainerForCardItems, OneMoreContainer, ViewMoreButton} from "./Home.styles";
-import DataContext from '../../context/data/DataContext';
+import {useDispatch, useSelector} from "react-redux";
+import {selectData} from "../../app/data_slice";
+import {selectIsLoading} from "../../app/isLoading_slice";
+import {loadData} from "../../api/get_data";
 
-function Home(props) {
-
-    const {data} = useContext(DataContext)
+function Home() {
+    const data = useSelector(selectData)
+    const isLoading = useSelector(selectIsLoading)
+    const dispatch = useDispatch()
     const [limit, setLimit] = useState(3)
 
+    useEffect(loadData(dispatch), []);
+
     const handleViewMore = () => {
-        setLimit(limit+3)
+        setLimit(limit + 3)
     }
 
     return (

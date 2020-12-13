@@ -3,12 +3,18 @@ import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders} from ".
 import {Link} from "react-router-dom";
 import {Price} from "../../App.styles";
 import DataContext from '../../context/data/DataContext';
+import {useSelector} from "react-redux";
+import {selectData} from "../../app/data_slice";
+import {selectIsLoading} from "../../app/isLoading_slice";
 
 function BigItem() {
-    const {data, isLoading} = React.useContext(DataContext);
+    const data = useSelector(selectData)
+    const isLoading = useSelector(selectIsLoading)
     const [car, setCar] = useState({title: "", model: "", description: "", id: 0, price: 100})
 
     useEffect(() => {
+        console.log("bigItem's useEffect")
+        console.log(data)
         if (!isLoading) {
             setCar(data[0] || car);
         }

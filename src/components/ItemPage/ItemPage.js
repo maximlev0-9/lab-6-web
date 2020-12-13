@@ -1,11 +1,12 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {useParams} from 'react-router-dom';
-import DataContext from "../../context/data/DataContext";
 import {AddToCartButton, CarOptionsText, ItemDetailsTitle, ItemDetailsWrapper, ItemPageWrapper} from "./Item.styles";
+import {useSelector} from "react-redux";
+import {selectData} from "../../app/data_slice";
 
 function ItemPage() {
     const {id} = useParams()
-    const {data} = useContext(DataContext);
+    const data = useSelector(selectData)
     const item = data.filter(item => {
         // eslint-disable-next-line eqeqeq
         return item.id == id;
@@ -34,7 +35,7 @@ function ItemPage() {
                     Price: {item.price}$
                 </CarOptionsText>
                 <CarOptionsText>
-                    Tank volume: {item.TankVolumeInGallons} gallons
+                    Tank volume: {item.tankVolumeInGallons} gallons
                 </CarOptionsText>
 
                 <AddToCartButton>Add to cart</AddToCartButton>
