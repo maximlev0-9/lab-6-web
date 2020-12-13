@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../themes/main_theme";
 
 export const ContainerForCardItems = styled.div`
 background-color: white;
@@ -16,11 +17,11 @@ export const OneMoreContainer = styled.div`
 `
 
 export const ViewMoreButton = styled.button`
-  margin: 1rem 47%;
+  margin: 1rem 46%;
   width: 6rem;
   padding: 0.3rem 0;
-  background: orange;
-  border-color: orange;
+  background: ${theme.button_color_primary};
+  border-color: ${theme.button_color_primary};
   border-radius: 0.3rem;
   color: white;
   

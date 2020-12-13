@@ -1,9 +1,15 @@
 import React from 'react';
-import {CardItemDiv, CardItemIcon, CardItemButtonMoreInfo} from "./CardItem.slyles";
-import {Link} from "react-router-dom";
+import {
+    AddToCartButton,
+    CardItemButtonsWrapper,
+    CardItemDiv,
+    CardItemIcon,
+    CardItemLinkMoreInfo
+} from "./CardItem.slyles";
+import {Price} from "../../App.styles";
 
-function CardItem({car}) {
-    const {id = 1, imageSrc = "tesla-x", title = "Ferrari", description = "lol", model = "XLS"} = car;
+function CardItem({car, children}) {
+    const {id = 1, imageSrc = "tesla-x", title = "Ferrari", description = "lol", model = "XLS", price=0} = car;
     return (
         <CardItemDiv>
             <CardItemIcon
@@ -11,12 +17,14 @@ function CardItem({car}) {
             />
             <h2>{title} {model}</h2>
             <p>Description: {description}</p>
-            <CardItemButtonMoreInfo exact={"true"} to={`catalog/item/${id}`}>
-                {/*<Link >*/}
+            <Price>${price}</Price>
+            <CardItemButtonsWrapper>
+                <AddToCartButton>Add to cart</AddToCartButton>
+                <CardItemLinkMoreInfo exact={"true"} to={`catalog/item/${id}`}>
                     More info
-                {/*</Link>*/}
-            </CardItemButtonMoreInfo>
-
+                </CardItemLinkMoreInfo>
+            </CardItemButtonsWrapper>
+            {children}
         </CardItemDiv>
     );
 }

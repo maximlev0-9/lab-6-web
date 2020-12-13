@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import React from "react";
+import theme from "../../themes/main_theme";
 
 export const FooterRoot = styled.div`
   padding: 1rem;
+  background-color: ${theme.background_color};
 `
 
 export const BlackLineForFooter = styled.div`

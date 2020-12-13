@@ -12,7 +12,6 @@ function BigItem() {
         if (!isLoading) {
             setCar(data[0] || car);
         }
-        console.log("end of useEffect in BigItem")
     }, [isLoading, car, data])
     return (
         <DivWithBorders>
