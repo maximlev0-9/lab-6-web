@@ -13,13 +13,10 @@ export const cartSlice = createSlice({
             let item = {...action.payload};
             item.id = state.cars.length
             state.cars.push(item)
+            alert("Item added")
         },
         removeCartItem: (state, action) => {
-            console.log("id")
-            console.log(action.payload)
             state.cars = state.cars.filter(item => {
-                console.log("item")
-                console.log(item)
                 return item.id != action.payload;
             });
         }

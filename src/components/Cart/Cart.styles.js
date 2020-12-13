@@ -10,3 +10,9 @@ export const RemoveButton = styled.button`
   height: 1.5rem;
   border: none;
 `
+
+export const CartTitleText = styled.p`
+font-size: 2.5rem;
+margin: 0 auto;
+width: fit-content;
+`;
