@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {BigItemImage, ButtonToBuyCar, DivForDescription, DivWithBorders} from "./BigItem.styles.js";
 import {Link} from "react-router-dom";
 import {Price} from "../../App.styles";
-import DataContext from '../../context/data/DataContext';
 import {useSelector} from "react-redux";
 import {selectData} from "../../app/data_slice";
 import {selectIsLoading} from "../../app/isLoading_slice";

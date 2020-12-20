@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Catalog from "./components/Catalog/Catalog";
-
+import Checkout from './components/checkout/Checkout'
 import Cart from "./components/Cart/Cart";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
                 <Route exact={true} path="/catalog" component={Catalog}/>
                 <Route exact={true} path="/catalog/item/:id" component={ItemPage}/>
                 <Route path="/cart" component={Cart}/>
+                <Route path="/checkout" component={Checkout}/>
                 <Route path="/" component={Home}/>
             </Switch>
             <Footer/>

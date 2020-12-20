@@ -1,30 +1,38 @@
-import React, {useEffect} from 'react';
+import React from "react";
+import {useHistory} from 'react-router-dom';
 import CardItem from "../CardItem/CardItem";
-import {CatalogWrapper} from "../Catalog/Catalog.styles";
-import {CartTitleText, RemoveButton} from "./Cart.styles";
-import {useDispatch, useSelector} from "react-redux";
-import {removeCartItem, selectCartData} from "../../app/cart_slice";
+import { CatalogWrapper } from "../Catalog/Catalog.styles";
+import { CartTitleText, RemoveButton, BuyButton, BuyButtonWrapper } from "./Cart.styles";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCartItem, selectCartData } from "../../app/cart_slice";
 
 function Cart() {
-    const viewedData = useSelector(selectCartData)
+    const viewedData = useSelector(selectCartData);
     const dispatch = useDispatch();
+    
+    const history = useHistory();
 
-    useEffect(() => {
-        console.log("Cart")
-        console.log(viewedData)
-    })
+    const handleBuyClick = (_) => {
+        history.push("/checkout");
+    }
+    
     return (
-        <>
-            <CartTitleText>Your Items</CartTitleText>
-            <CatalogWrapper>
-                {viewedData.map(item => (<>
-                    <CardItem key={item.id}
-                              car={item}>
-                        <RemoveButton onClick={() => dispatch(removeCartItem(item.id))}/>
-                    </CardItem>
-                </>))}
-            </CatalogWrapper>
-        </>
+    <>
+        <CartTitleText>Your Items</CartTitleText>
+        <CatalogWrapper>
+        {viewedData.map((item) => (
+            <>
+            <CardItem key={item.id} car={item}>
+                <RemoveButton onClick={() => dispatch(removeCartItem(item.id))} />
+            </CardItem>
+            </>
+        ))}
+        </CatalogWrapper>
+        <BuyButtonWrapper>
+            <BuyButton onClick={handleBuyClick}>Buy items!</BuyButton>
+        </BuyButtonWrapper>
+        
+    </>
     );
 }
 
