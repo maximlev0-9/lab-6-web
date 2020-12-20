@@ -1,8 +1,19 @@
 import React from 'react';
-import {CardItemDiv, CardItemIcon, CardItemButtonMoreInfo} from "./CardItem.slyles";
+import {
+    AddToCartButton,
+    CardItemButtonsWrapper,
+    CardItemDiv,
+    CardItemIcon,
+    CardItemLinkMoreInfo
+} from "./CardItem.slyles";
 import {Price} from "../../App.styles";
+import {appendCartData} from "../../app/cart_slice";
+import {useDispatch} from "react-redux";
 
-function CardItem({imageSrc="tesla-x",title = "Ferrari", price = 100000, description = "lol", model = "XLS"}) {
+function CardItem({car, children}) {
+    const dispatch = useDispatch()
+
+    const {id = 1, imageSrc = "tesla-x", title = "Ferrari", description = "lol", model = "XLS", price=0} = car;
     return (
         <CardItemDiv>
             <CardItemIcon
@@ -10,8 +21,14 @@ function CardItem({imageSrc="tesla-x",title = "Ferrari", price = 100000, descrip
             />
             <h2>{title} {model}</h2>
             <p>Description: {description}</p>
-            <CardItemButtonMoreInfo>More info</CardItemButtonMoreInfo>
-
+            <Price>${price}</Price>
+            <CardItemButtonsWrapper>
+                <AddToCartButton onClick={() => {dispatch(appendCartData(car))}}>Add to cart</AddToCartButton>
+                <CardItemLinkMoreInfo exact={"true"} to={`catalog/item/${id}`}>
+                    More info
+                </CardItemLinkMoreInfo>
+            </CardItemButtonsWrapper>
+            {children}
         </CardItemDiv>
     );
 }

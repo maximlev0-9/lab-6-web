@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../themes/main_theme";
 
 
 export const DivForTwoElements = styled.div`
@@ -7,7 +8,7 @@ export const DivForTwoElements = styled.div`
 `
 
 export const CatalogWrapper = styled.div`
-  background-color: white;
+  background-color: ${theme.background_second};
   padding: 0 10%;
 `
 
@@ -19,6 +20,7 @@ export const FilterInput = styled.input`
 `
 
 export const SortAndSearchWrapper = styled.div`
+background-color: ${theme.background_color};
   align-items: center;
   justify-content: space-between;
   display:flex;

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
+import theme from "../../themes/main_theme";
 
 export const CardItemDiv = styled.div`
+position: relative;
   display: inline-block;
   width: 31%;
   min-width: 15rem;
@@ -21,13 +24,31 @@ export const CardItemIcon = styled.div`
   margin-bottom: 0.2rem;
 `
 
-export const CardItemButtonMoreInfo = styled.button`
-  margin: 0.4rem 0 0;
+export const CardItemLinkMoreInfo = styled(Link)`
+  width: fit-content;
   align-self: center;
   align-items: center;
   padding: 0.3rem 1rem;
-  border: 0.1rem orange solid;
-  color: orange;
+  border: 0.1rem ${theme.button_color_primary} solid;
+  color: ${theme.button_color_primary};
   border-radius: 0.5rem;
   background-color: initial;
 `;
+
+export const AddToCartButton = styled.button`
+  width: fit-content;
+  align-self: center;
+  align-items: center;
+  padding: 0.3rem 1rem;
+  border: 0.1rem ${theme.button_color_important} solid;
+  color: ${theme.button_color_important};
+  border-radius: 0.5rem;
+  background-color: initial;
+`
+
+export const CardItemButtonsWrapper = styled.div`
+  display:flex;
+  width: 94%;
+  margin: 0 3% 0.3rem;
+  justify-content: space-between;
+`

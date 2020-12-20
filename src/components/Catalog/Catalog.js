@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     CatalogWrapper,
     DivForTwoElements,
@@ -8,22 +8,30 @@ import {
     SortWrapper
 } from "./Catalog.styles";
 import CardItem from "../CardItem/CardItem";
-import {DataContext} from "../../App";
+import {useDispatch, useSelector} from "react-redux";
+import {selectData} from "../../app/data_slice";
+import loadData from "../../api/get_data";
 
-function Catalog(props) {
 
-    const data = React.useContext(DataContext)
+function Catalog() {
+
+    const data = useSelector(selectData)
     const [viewedData, setViewedData] = useState(data);
-    const [filterBy, setFilterBy] = useState("title");
+    const [filterSelectValue, setFilterSelectValue] = useState("title");
+    const [filterInputValue, setFilterInputValue] = useState("")
+    const dispatch = useDispatch()
 
-    const [filter, setFilter] = useState("")
+    useEffect(loadData(dispatch), [])
 
+    useEffect(() => {
+        setViewedData(data)
+    },[data])
 
-    const updateData = (currSearch, filterByTwo=filterBy) => {
-        if (currSearch.trim()) {
+    const updateData = (currFilterInput = filterInputValue, currFilterSelect = filterSelectValue) => {
+        if (currFilterInput.trim()) {
             setViewedData(data.filter(item => {
                     let compareBy;
-                    switch (filterByTwo) {
+                    switch (currFilterSelect) {
                         case "title":
                             compareBy = item.title;
                             break;
@@ -31,12 +39,12 @@ function Catalog(props) {
                             compareBy = item.model;
                             break;
                         case "price":
-                            compareBy = item.price;
+                            compareBy = item.price.toString();
                             break;
                         default:
                             compareBy = item.title
                     }
-                    return compareBy.startsWith(currSearch);
+                    return compareBy.startsWith(currFilterInput);
                 }
             ))
         } else {
@@ -45,18 +53,33 @@ function Catalog(props) {
     }
     const handleChangeSearchInput = (event) => {
         let currSearch = event.target.value;
-        setFilter(currSearch)
-
+        setFilterInputValue(currSearch)
         updateData(currSearch);
-
     }
-
 
     const handleChangeSearchSelect = (event) => {
         let newFilterBy = event.target.value;
-        setFilterBy(newFilterBy);
-        updateData(filter, newFilterBy)
+        setFilterSelectValue(newFilterBy);
+        updateData(filterInputValue, newFilterBy)
     }
+
+    const handleChangeSortSelect = (event) => {
+        let sortBySth = event.target.value;
+        let tempData = [...viewedData]
+        tempData.sort((a, b) => {
+            switch (sortBySth) {
+                case "title":
+                    return a.title > b.title ? 1 : -1;
+                case "model":
+                    return a.model > b.model ? 1 : -1;
+                case "price":
+                    return a.price - b.price;
+                default:
+                    return a.title > b.title ? 1 : -1;
+            }
+        })
+        setViewedData(tempData)
+    };
 
     return (
         <div>
@@ -64,12 +87,14 @@ function Catalog(props) {
                 <SearchWrapper>
                     <DivForTwoElements>
                         Search
-                        <FilterInput value={filter} name={"filter"} title={"filter"} placeholder={"Kek"}
+                        <FilterInput value={filterInputValue} name={"filterInputValue"} title={"filterInputValue"}
+                                     placeholder={"Kek"}
                                      onChange={handleChangeSearchInput}/>
                     </DivForTwoElements>
                     <DivForTwoElements>
                         Search by:
-                        <SearchSelect value={filterBy} placeholder={"model"} name={"search_by"} id={"search_by"}
+                        <SearchSelect value={filterSelectValue} placeholder={"model"} name={"search_by"}
+                                      id={"search_by"}
                                       onChange={handleChangeSearchSelect}>
                             <option value="title">Title</option>
                             <option value="model">Model</option>
@@ -80,24 +105,18 @@ function Catalog(props) {
 
                 <SortWrapper>
                     Sort by:
-                    <SortSelect name={"sort_by"}>
+                    <SortSelect name={"sort_by"}
+                                onChange={handleChangeSortSelect}
+                    >
                         <option value="title">Title</option>
                         <option value="model">Model</option>
                         <option value="price">Price</option>
                     </SortSelect>
                 </SortWrapper>
-
-
             </SortAndSearchWrapper>
-
-
             <CatalogWrapper>
-                {viewedData.map(item => <CardItem title={item.title}
-                                                  price={item.price}
-                                                  model={item.model}
-                                                  description={item.description}
-                                                  imageSrc={item.imageSrc}/>)}
-
+                {viewedData.map(item => <CardItem key={item.id}
+                                                  car={item}/>)}
             </CatalogWrapper>
         </div>
     );
