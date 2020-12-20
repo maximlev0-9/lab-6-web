@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer";
 import Catalog from "./components/Catalog/Catalog";
 import Checkout from './components/checkout/Checkout'
 import Cart from "./components/Cart/Cart";
+import Success from "./components/Success/Success";
+
 
 function App() {
     return (
@@ -19,6 +21,7 @@ function App() {
                 <Route exact={true} path="/catalog/item/:id" component={ItemPage}/>
                 <Route path="/cart" component={Cart}/>
                 <Route path="/checkout" component={Checkout}/>
+                <Route path="/success" component={Success}/>
                 <Route path="/" component={Home}/>
             </Switch>
             <Footer/>

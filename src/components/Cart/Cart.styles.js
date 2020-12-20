@@ -32,3 +32,8 @@ export const BuyButtonWrapper = styled.div`
   display: flex;
   
 `
+
+export const CartWrapper = styled.div`
+  // padding-bottom: 5rem;
+  min-height: 77.5vh;
+`

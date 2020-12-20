@@ -2,7 +2,7 @@ import React from "react";
 import {useHistory} from 'react-router-dom';
 import CardItem from "../CardItem/CardItem";
 import { CatalogWrapper } from "../Catalog/Catalog.styles";
-import { CartTitleText, RemoveButton, BuyButton, BuyButtonWrapper } from "./Cart.styles";
+import { CartTitleText, RemoveButton, BuyButton, BuyButtonWrapper, CartWrapper } from "./Cart.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCartItem, selectCartData } from "../../app/cart_slice";
 
@@ -21,7 +21,7 @@ function Cart() {
     }
     
     return (
-    <>
+    <CartWrapper>
         <CartTitleText>Your Items</CartTitleText>
         <CatalogWrapper>
         {viewedData.map((item) => (
@@ -36,7 +36,7 @@ function Cart() {
             <BuyButton onClick={handleBuyClick}>Buy items!</BuyButton>
         </BuyButtonWrapper>
         
-    </>
+    </CartWrapper>
     );
 }
 

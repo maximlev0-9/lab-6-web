@@ -16,7 +16,7 @@ export const InputWrapper = styled.div`
 export const DivWithBorders = styled.div`
   border: 0.1rem black solid;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 1rem 3rem;
   margin: 0 auto 1rem;
   display: flex;
   flex-direction: column;
