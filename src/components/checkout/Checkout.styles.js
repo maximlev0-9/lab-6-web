@@ -13,10 +13,6 @@ export const InputWrapper = styled.div`
   // display: flex;
 `
 
-export const DivFlex = styled.div`
-  display: flex;
-`
-
 export const DivWithBorders = styled.div`
   border: 0.1rem black solid;
   border-radius: 1rem;

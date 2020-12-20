@@ -13,7 +13,11 @@ function Cart() {
     const history = useHistory();
 
     const handleBuyClick = (_) => {
-        history.push("/checkout");
+        if (viewedData.length!==0){
+            history.push("/checkout");
+        } else {
+            alert('Add any items to cart!')
+        }
     }
     
     return (

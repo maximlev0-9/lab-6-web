@@ -5,7 +5,6 @@ import {
   SubmitButton,
   InputWrapper,
   LabelForInput,
-  DivFlex,
   DivWithBorders,
   DivForButtons,
 } from "./Checkout.styles";
